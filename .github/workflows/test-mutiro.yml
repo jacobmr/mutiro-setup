@@ -1,0 +1,22 @@
+name: Test Mutiro Setup
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-mutiro:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Mutiro Setup script
+        run: |
+          chmod +x mutiro-setup.sh
+          yes "" | ./mutiro-setup.sh
+
+      - name: Run Mutiro doctor
+        run: |
+          mutiro doctor
